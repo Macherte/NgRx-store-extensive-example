@@ -22,18 +22,13 @@ export class CollectionEffects {
         tap(([action, bookCollection]) => {
           if (bookCollection.length === 1) {
             window.alert(
-              'Congrats on adding your first book!' +
-                ' \nThe dispatched action was "' +
-                action.type +
-                '"'
+              'Congrats on adding your first book! ' +
+              '\nThe dispatched action was "' + action.type + '"'
             );
           } else {
             window.alert(
-              'You have added book number ' +
-                bookCollection.length +
-                '. \nThe dispatched action was "' +
-                action.type +
-                '"'
+              'You have added book number ' + bookCollection.length + '. ' +
+              '\nThe dispatched action was "' + action.type + '"'
             );
           }
         })
