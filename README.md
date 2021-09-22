@@ -1,3 +1,2 @@
-# angular-kxj68w-wqascn
-
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-kxj68w-wqascn)
+Credit for the majority of code goes to https://ngrx.io/  
+License: https://github.com/ngrx/platform/blob/master/LICENSE
