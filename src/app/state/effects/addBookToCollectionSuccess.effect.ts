@@ -6,6 +6,10 @@ import * as bookActions from '../actions/book.action';
 import { AppState } from '../app.state';
 import * as fromBooks from '../selectors/book.selector';
 
+/**
+ * When a book has successfully been added to the user's collection,
+ * this effect alerts the user of the success and which action was triggered
+ */
 @Injectable()
 export class CollectionEffects {
   addBookToCollectionSuccess$ = createEffect(

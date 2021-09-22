@@ -15,9 +15,9 @@ export const initialState: ReadonlyArray<string> = [];
  */
 export const collectionReducer = createReducer(
   initialState,
-  /** creates a new state, a new array without the one book id defined in bookId that is sent along the type of the action and the current state, as a prop */
+  /** creates a new state, a new array without the book id (defined in bookId) that is sent along the type of the action and the current state, as a prop */
   on(removeBook, (state, { bookId }) => state.filter((id) => id !== bookId)),
-  /** creates a new state, a new array that includes the book id defined in bookId, only if it's not present yet */
+  /** creates a new state, a new array that includes the book id (defined in bookId), only if it's not present yet */
   on(addBook, (state, { bookId }) => {
     if (state.indexOf(bookId) > -1) return state;
     return [...state, bookId];

@@ -11,13 +11,14 @@ import {
   removeBook,
   addBookSuccess,
 } from './state/actions/book.action';
-import { GoogleBooksService } from './book-list/books.service';
+import { GoogleBooksService } from './services/books.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
 })
 export class AppComponent {
+  //We use pipes when using selectors to select parts of the state
   books$ = this.store.pipe(select(selectBooks));
   bookCollection$ = this.store.pipe(select(selectBookCollection));
 
@@ -25,23 +26,26 @@ export class AppComponent {
    * STEP 4.
    *
    * Injection of the Store service to dispatch actions and select the current state of the counter.
-   ************** We inject the store by providing it a generic type, the structure defined at STEP 2.
+   * Here we inject the store without providing it a generic type. In this case it defaults to Store<T = object>
    */
   constructor(private booksService: GoogleBooksService, private store: Store) {
     this.books$.subscribe((state) => console.log(state));
   }
 
   onAdd(bookId) {
-    //not destructured here
-    this.store.dispatch(addBook(bookId));
+    this.store.dispatch(addBook({ bookId }));
+
+    //dispatching the action that triggers the effect. This is only for demonstration, not a bug-free, nice solution
     this.store.dispatch(addBookSuccess());
   }
 
   onRemove(bookId) {
-    this.store.dispatch(removeBook({ bookId }));
+    //the prop is not destructured here, it is destructured at the action's side
+    this.store.dispatch(removeBook(bookId));
   }
 
   ngOnInit() {
+    //loads the list of books at startup (this behavior should be performed using effects to reduce the component's responsibility)
     this.booksService
       .getBooks()
       .subscribe((Book) => this.store.dispatch(retrievedBookList({ Book })));

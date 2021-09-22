@@ -1,6 +1,6 @@
-//handles actions that alter the list of book
+//handles actions that alter the list of books
 
-import { createReducer, on, Action } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 
 import { retrievedBookList } from '../actions/book.action';
 import { Book } from '../../book-list/books.model';
